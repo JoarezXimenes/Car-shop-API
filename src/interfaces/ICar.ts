@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { vehicleZodSchema } from './IVehicle';
 
-export const carZodSchema = vehicleZodSchema.extend({
+export const CarZodSchema = vehicleZodSchema.extend({
   doorsQty: z.number({
     required_error: ' doorQty is required',
     invalid_type_error: 'doorQty must be a number',
@@ -14,4 +14,4 @@ export const carZodSchema = vehicleZodSchema.extend({
     .max(4, { message: 'seatsQty must be less than 7' }),
 });
 
-export type ICar = z.infer<typeof carZodSchema>;
+export type ICar = z.infer<typeof CarZodSchema>;

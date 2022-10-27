@@ -26,11 +26,11 @@ abstract class MongoModel<T> implements IModel<T> {
     const updatedDocument = this._model.findByIdAndUpdate(_id, obj, { new: true });
     return updatedDocument;
   }
-  async delete(_id: string): Promise<boolean> {
+  async delete(_id: string): Promise<T | null> {
     if (!isValidObjectId(_id)) throw Error('InvalidMongoId');
-    const documentDeleted = await this._model.deleteOne({ _id });
-    if (documentDeleted.deletedCount === 0) return false;
-    return true;
+    const document = await this._model.findById(_id);
+    await this._model.deleteOne({ _id });
+    return document;
   }
 }
 
