@@ -38,6 +38,5 @@ describe('Car Service', () => {
       const cars = await carService.read();
       expect(cars).to.have.deep.members([carMockWithId]);
     });
-
   });
 });
